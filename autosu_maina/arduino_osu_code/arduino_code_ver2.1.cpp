@@ -19,12 +19,12 @@ void setup()
 	pinMode(3, INPUT_PULLUP);
 	pinMode(4, INPUT_PULLUP);
 	pinMode(5, INPUT_PULLUP);
-	if (strlen(key_mapping) > 4)
+	/*if (strlen(key_mapping) > 4)
 		pinMode(7, INPUT_PULLUP);
 	if (strlen(key_mapping) > 5)
 		pinMode(8, INPUT_PULLUP);
 	if (strlen(key_mapping) > 6)
-		pinMode(9, INPUT_PULLUP);
+		pinMode(9, INPUT_PULLUP);*/
 	pinMode(6, OUTPUT);
 	if (mode == AUTO)
 	{
@@ -41,7 +41,7 @@ void setup()
 	Keyboard.begin();
 	pattern_start = pgm_read_word_near(timing + 0);
 
-	jitter = 70;
+	jitter = 50;
 	mode = AUTO;
 	offset = 0;
 }
@@ -49,7 +49,7 @@ void setup()
 
 void loop()
 {
-	if (mode == KEYBOARD)
+	/*if (mode == KEYBOARD)
 	{
 		while (1)
 		{
@@ -90,15 +90,14 @@ void loop()
 				delay(16);
 			}
 		}
-	}
-
+	}*/
 
 	smart_person = random(-jitter, jitter);			//Give a random delay to make it look like a person is playing.
 	if (i != 0)
 		smart_person -= jitter;
 	ret_time = (unsigned long)millis() - start_time + pattern_start - offset + smart_person;
 
-	line_pattern = pgm_read_byte_near(pattern[i]);
+	line_pattern = pgm_read_word_near(pattern[i]);
 	get_timing = pgm_read_dword_near(timing + i);
 
 	while (start_bit)
@@ -127,14 +126,14 @@ void loop()
 		if (((line_pattern & 0x00c0) >> 6) == 3)
 			Keyboard.release(key_mapping[3]);
 
-		if (strlen(key_mapping) > 4 && ((line_pattern & 0x00c0) >> 8) == 3)
-			pinMode(7, INPUT_PULLUP);
+		if (((line_pattern & 0x0300) >> 8) == 3)
+			Keyboard.release(key_mapping[4]);
 
-		if (strlen(key_mapping) > 5 && ((line_pattern & 0x00c0) >> 10) == 3)
-			pinMode(8, INPUT_PULLUP);
+		if (((line_pattern & 0x0c00) >> 10) == 3)
+			Keyboard.release(key_mapping[5]);
 
-		if (strlen(key_mapping) > 6 && ((line_pattern & 0x00c0) >> 12) == 3)
-			pinMode(9, INPUT_PULLUP);
+		if (((line_pattern & 0x3000) >> 12) == 3)
+			Keyboard.release(key_mapping[6]);
 
 		if (((line_pattern & 0x0003) >> 0) == 1 || ((line_pattern & 0x0003) >> 0) == 2)
 		{
@@ -156,17 +155,17 @@ void loop()
 			Keyboard.release(key_mapping[3]);
 			Keyboard.press(key_mapping[3]);
 		}
-		if (strlen(key_mapping) > 4 && ((line_pattern & 0x00c0) >> 8) == 1 || ((line_pattern & 0x00c0) >> 8) == 2)
+		if (((line_pattern & 0x0300) >> 8) == 1 || ((line_pattern & 0x0300) >> 8) == 2)
 		{
 			Keyboard.release(key_mapping[4]);
 			Keyboard.press(key_mapping[4]);
 		}
-		if (strlen(key_mapping) > 5 && ((line_pattern & 0x00c0) >> 10) == 1 || ((line_pattern & 0x00c0) >> 10) == 2)
+		if (((line_pattern & 0x0c00) >> 10) == 1 || ((line_pattern & 0x0c00) >> 10) == 2)
 		{
 			Keyboard.release(key_mapping[5]);
 			Keyboard.press(key_mapping[5]);
 		}
-		if (strlen(key_mapping) > 6 && ((line_pattern & 0x00c0) >> 12) == 1 || ((line_pattern & 0x00c0) >> 12) == 2)
+		if (((line_pattern & 0x3000) >> 12) == 1 || ((line_pattern & 0x3000) >> 12) == 2)
 		{
 			Keyboard.release(key_mapping[6]);
 			Keyboard.press(key_mapping[6]);
@@ -186,13 +185,13 @@ void loop()
 		if (((line_pattern & 0x00c0) >> 6) == 1)
 			Keyboard.release(key_mapping[3]);
 
-		if (strlen(key_mapping) > 4 && ((line_pattern & 0x00c0) >> 8) == 1)
+		if (((line_pattern & 0x0300) >> 8) == 1)
 			Keyboard.release(key_mapping[4]);
 
-		if (strlen(key_mapping) > 5 && ((line_pattern & 0x00c0) >> 10) == 1)
+		if (((line_pattern & 0x0c00) >> 10) == 1)
 			Keyboard.release(key_mapping[5]);
 
-		if (strlen(key_mapping) > 6 && ((line_pattern & 0x00c0) >> 12) == 1)
+		if (((line_pattern & 0x3000) >> 12) == 1)
 			Keyboard.release(key_mapping[6]);
 	}
 

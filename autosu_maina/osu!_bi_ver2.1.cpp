@@ -368,24 +368,8 @@ int main()
 			<< "//" << "file size is " << pattern.size() * (4 + mode) / 1024 << "KB" << endl;
 		std::cout << "file size is " << pattern.size() * (4 + mode) / 1024 << "KB" << endl;
 
-		switch (mode)
-		{
-		case K4_MODE:
-			p.open("arduino_osu_code/arduino_code_4K_" + version + ".cpp");
-			break;
-		case K5_MODE:
-			p.open("arduino_osu_code/arduino_code_5K_" + version + ".cpp");
-			break;
-		case K6_MODE:
-			p.open("arduino_osu_code/arduino_code_6K_" + version + ".cpp");
-			break;
-		case K7_MODE:
-			p.open("arduino_osu_code/arduino_code_7K_" + version + ".cpp");
-			break;
-		default:
-			break;
-		}
-
+		p.open("arduino_osu_code/arduino_code_" + version + ".cpp");
+			
 		if (p.is_open())
 		{
 			while (!p.eof())
