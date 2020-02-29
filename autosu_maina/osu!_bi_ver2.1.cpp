@@ -28,6 +28,8 @@ vector<str_t> get_files_in_folder(str_t folder, str_t file_type);
 int first_excute();
 string bit2string(int num);
 string num2bi(vector<int> pattern, int mode);
+wstring UserName();
+
 
 enum {
 	K4_MODE = 4,
@@ -53,7 +55,9 @@ int main()
 	int mode = 0;
 	char quit = 'y';
 	string PATH;
-	vector<string> game_cfg = file2string("C:/Users/thsxo/AppData/Local/osu!/osu!.thsxo.cfg");
+	wstring wUsers_name = UserName();
+	string Users_name = string().assign(wUsers_name.begin(), wUsers_name.end());
+	vector<string> game_cfg = file2string("C:/Users/" + Users_name + "/AppData/Local/osu!/osu!." + Users_name + ".cfg");
 
 	if (first_excute())
 	{
@@ -818,4 +822,14 @@ string num2bi(vector<int> pattern, int mode)
 		tmp[3] = bit2string(pattern[6]);
 		return (tmp[3] + tmp[2] + tmp[1] + tmp[0]);
 	}
+}
+
+wstring UserName()
+{
+	WCHAR name[21];
+
+	DWORD dwSize = sizeof(name);
+	::GetUserName(name, &dwSize);
+
+	return name;
 }
