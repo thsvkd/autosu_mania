@@ -427,21 +427,33 @@ string keymap_change(vector<string> cfg, int mode)
 						{"OemMinus",'-'},
 						{"OemPlus",'+'}, };
 	*/
-	string key_layout;
+	string key_layout = "";
 	string base_str("ManiaLayouts");
 
 	for (int i = 218; i < cfg.size(); i++)
 	{
 		int index;
-		if(mode == K4_MODE)
+		if (mode == K4_MODE)
+		{
+			key_layout = "dfjk";
 			index = cfg[i].find(base_str + "4K");
+		}
 		if (mode == K5_MODE)
+		{
+			key_layout = "df jk";
 			index = cfg[i].find(base_str + "5K");
+		}
 		if (mode == K6_MODE)
+		{
+			key_layout = "sdfjkl";
 			index = cfg[i].find(base_str + "6K");
+		}
 		if (mode == K7_MODE)
+		{
+			key_layout = "sdf jkl";
 			index = cfg[i].find(base_str + "7K");
-		
+		}
+
 
 		if (index != string::npos)
 		{

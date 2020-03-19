@@ -41,7 +41,7 @@ void setup()
 	Keyboard.begin();
 	pattern_start = pgm_read_word_near(timing + 0);
 
-	jitter = 50;
+	jitter = 0;
 	mode = AUTO;
 	offset = 0;
 }
@@ -92,10 +92,16 @@ void loop()
 		}
 	}*/
 
-	smart_person = random(-jitter, jitter);			//Give a random delay to make it look like a person is playing.
-	if (i != 0)
-		smart_person -= jitter;
-	ret_time = (unsigned long)millis() - start_time + pattern_start - offset + smart_person;
+	if (jitter != 0)
+	{
+		smart_person = random(-jitter, jitter);			//Give a random delay to make it look like a person is playing.
+		if (i != 0)
+			smart_person -= jitter;
+
+		ret_time = (unsigned long)millis() - start_time + pattern_start - offset + smart_person;
+	}
+	else
+		ret_time = (unsigned long)millis() - start_time + pattern_start - offset;
 
 	line_pattern = pgm_read_word_near(pattern[i]);
 	get_timing = pgm_read_dword_near(timing + i);
@@ -111,7 +117,7 @@ void loop()
 
 	time_gap = abs(get_timing - ret_time);
 
-	if (time_gap < 2)
+	if (time_gap <= 2)
 	{
 		i++;
 		if (((line_pattern & 0x0003) >> 0) == 3)
