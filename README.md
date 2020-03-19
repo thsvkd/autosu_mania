@@ -2,8 +2,8 @@
 
 I made osu! mania auto macro which can run at arduino micro board. This project consists of two main components.
 
-**1. Aduino code generator running on your PC
-**2. Aduino code with a base code
+1. Aduino code generator running on your PC
+2. Aduino code with a base code
 
 The code generator uses the base aduino code to generate a compilationable aduino code and copy it to the clipboard. And then paste the code into the aduino IDE and upload it to the aduino micro(use ctrl + A, ctrl + V). 
 
