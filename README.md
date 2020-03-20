@@ -16,9 +16,15 @@ Once the upload is complete, press the button corresponding to ***pin 5*** to st
 
 <img src="https://user-images.githubusercontent.com/53033449/77125220-85234880-6a88-11ea-9ca7-d51a216569cd.png" width="60%" height="60%" title="Aduino code generator" alt="Aduino code generator"></img>
 
-***Pin 3*** and ***pin 2*** respectively slow down or quicken the sync of the automatic play. In the osu! setting menu, if the score meter of the game play section is set to ***"judgment error"***, ***pin 3*** moves the hit bar(*blue bar at picture*) to the left and ***pin 2*** moves to the right.
+***Pin 3*** and ***pin 2*** respectively slow down or quicken the sync of the automatic play. In the osu! setting menu, if the score meter of the game play section is set to ***"judgment error"***, ***pin 3*** moves the hit bar(*blue bar at picture*) to the left and ***pin 2*** moves to the right.   
+
+
+<img src="https://user-images.githubusercontent.com/53033449/77129110-12b96500-6a96-11ea-9408-8999115fcb65.png" width="60%" height="60%" title="Aduino code generator" alt="Aduino code generator"></img>
 
 To use this properly, you receive it as a zip file through the git clone, then extract it and open the sln file to build it. If the build is successful, the program will run automatically. (***You must have visual studios installed to open the sln file***) 
+
+
+<img src="https://user-images.githubusercontent.com/53033449/77128985-a2aadf00-6a95-11ea-9fbc-13902fd47849.png" width="40%" height="40%" title="Aduino code generator" alt="Aduino code generator"></img> <img src="https://user-images.githubusercontent.com/53033449/77128986-a3dc0c00-6a95-11ea-8fdc-838466e00bde.png" width="40%" height="60%" title="Aduino code generator" alt="Aduino code generator"></img> <img src="https://user-images.githubusercontent.com/53033449/77128987-a3dc0c00-6a95-11ea-8f4c-e74246999a68.png" width="40%" height="60%" title="Aduino code generator" alt="Aduino code generator"></img>
 
 When the program runs, type a part of the title of the song you want to play automatically and press Enter. Then you will get a list of the songs that contain that word. If you enter an index for a song that you want to auto-play, you can see that song is selected. At this state, press the enter one more time (if the difficulty does not appear, press it one more time), you'll get a list of map levels. You can select the corresponding index to obtain an arduino code that automatically plays that level of difficulty
 
