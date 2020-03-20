@@ -54,30 +54,31 @@ int main()
 {
 	int mode = 0;
 	char quit = 'y';
-	string PATH;
 	wstring wUsers_name = UserName();
 	string Users_name = string().assign(wUsers_name.begin(), wUsers_name.end());
+	string PATH = "C:/Users/" + Users_name + "/AppData/Local/osu!/Songs/";
 	vector<string> game_cfg = file2string("C:/Users/" + Users_name + "/AppData/Local/osu!/osu!." + Users_name + ".cfg");
 
-	if (first_excute())
+
+	/*if (first_excute())
 	{
 		cout << "처음 실행 하셨군요! 맵의 경로를 입력해주세요 : ";
 		getline(cin, PATH, '\n');
 		ofstream s(L"arduino_code_path.txt");
 		s << PATH << "/";
 		s.close();
-	}
+	}*/
 
-	ifstream w(L"arduino_code_path.txt");
-	string tmp;
-	if (w.is_open())
+	//ifstream w(L"arduino_code_path.txt");
+	string tmp = PATH;
+	/*if (w.is_open())
 	{
 		while (!w.eof())
 		{
 			getline(w, tmp, '\n');
 		}
 		w.close();
-	}
+	}*/
 
 
 	while (quit == 'y')
@@ -457,6 +458,7 @@ string keymap_change(vector<string> cfg, int mode)
 
 		if (index != string::npos)
 		{
+			key_layout = "";
 			string substring = cfg[i].substr(12);
 			stringstream ss(substring);
 			vector<string> tmp;
@@ -478,6 +480,8 @@ string keymap_change(vector<string> cfg, int mode)
 				else
 					key_layout += ascii_map[tmp[j]];
 			}
+
+			return key_layout;
 			
 			/*
 			else if (tmp[0] == "8K")
