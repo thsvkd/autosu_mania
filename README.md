@@ -18,4 +18,4 @@ Once the upload is complete, press the button corresponding to ***pin 5*** to st
 
 ***Pin 3*** and ***pin 2*** respectively slow down or quicken the sync of the automatic play. In the osu! setting menu, if the score meter of the game play section is set to ***"judgment error"***, ***pin 3*** moves the hit bar(*blue bar at picture*) to the left and ***pin 2*** moves to the right.
 
-
+To use this properly, you receive it as a zip file through the git clone, then extract it and open the sln file to build it. If the build is successful, the program will run automatically. (***You must have visual studios installed to open the sln file***) 
