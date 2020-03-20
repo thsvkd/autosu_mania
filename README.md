@@ -1,4 +1,4 @@
-# autosu_maina
+# autosu!_maina
 
 I made osu! mania auto macro which can run at arduino micro board. This project consists of two main components.
 
