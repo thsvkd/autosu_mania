@@ -90,7 +90,7 @@ int main()
 		wstring file_name;
 		string tmp_for_path;
 
-		cout << "노래제목을 적어도 4글자이상 적어주세요 : ";
+		cout << "Please write the song title in at least four characters : ";
 		//cin.ignore();
 		getline(cin, tmp_for_path, '\n');
 		song_folder.assign(tmp_for_path.begin(), tmp_for_path.end());
@@ -104,19 +104,19 @@ int main()
 
 		else if (all_file.size() == 0)
 		{
-			cout << "파일이 없습니다..." << endl;
+			cout << "File not found..." << endl;
 			continue;
 		}
 		else if (all_file.size() > 1)
 		{
-			cout << "여러파일이 존재 합니다. 어느 맵을 선택하시겠습니까?" << endl;
+			cout << "Multiple files exist. Which map do you want to select?" << endl;
 			for (int i = 0; i < all_file.size(); i++)
 			{
 				cout << i + 1 << " ";
 				wcout << all_file[i] << endl;
 			}
 			int index = 0;
-			cout << "몇번째? : ";
+			cout << "index : ";
 			cin >> index;
 
 			if (index > all_file.size())
@@ -128,7 +128,7 @@ int main()
 			song_folder = all_file[index - 1] + L"/";
 		}
 
-		cout << "난이도(게임에 표시되어 있는 난이도 참조) : ";
+		cout << "Difficulty level (see the level of difficulty shown in the game) : ";
 		cin.ignore();
 		getline(cin, tmp_for_path, '\n');
 		hardness.assign(tmp_for_path.begin(), tmp_for_path.end());
@@ -142,19 +142,19 @@ int main()
 
 		else if (all_file.size() == 0)
 		{
-			cout << "난이도파일이 없습니다..." << endl;
+			cout << "There is no difficulty file...." << endl;
 			continue;
 		}
 		else if (all_file.size() > 1)
 		{
-			cout << "여러파일이 존재 합니다. 어느 맵을 선택하시겠습니까?" << endl;
+			cout << "Multiple files exist. Which map do you want to select?" << endl;
 			for (int i = 0; i < all_file.size(); i++)
 			{
 				cout << i + 1 << " ";
 				wcout << all_file[i] << endl;
 			}
 			int index = 0;
-			cout << "몇번째? : ";
+			cout << "index : ";
 			cin >> index;
 
 			if (index > all_file.size())
@@ -390,7 +390,7 @@ int main()
 		string good = JUST_PASTE_IT.str();
 		CopyTextToClipboard(good.c_str());
 
-		cout << "다른 맵도 만들어보기(y/n) : ";
+		cout << "Try creating other maps as well(y/n) : ";
 		cin >> quit;
 		cin.ignore();
 	}
