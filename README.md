@@ -1,6 +1,6 @@
 # autosu! maina
 
-I made osu! mania auto macro which can run at arduino micro board. This project consists of two main components.
+I made osu! mania hardware auto macro which can run at arduino micro board. This project consists of two main components.
 
     1. Aduino code generator
     2. base Aduino code
