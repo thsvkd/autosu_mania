@@ -90,7 +90,7 @@ int main()
 		wstring file_name;
 		string tmp_for_path;
 
-		cout << "Please write the song title in at least four characters : ";
+		cout << "Please write the song title in at least 4 characters : ";
 		//cin.ignore();
 		getline(cin, tmp_for_path, '\n');
 		song_folder.assign(tmp_for_path.begin(), tmp_for_path.end());
