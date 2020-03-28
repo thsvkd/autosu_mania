@@ -16,6 +16,8 @@ using namespace std;
 typedef wstring str_t;
 string version("ver2.1");
 
+string wstr2str(str_t input);
+str_t str2wstr(string input);
 vector<string> file2string(string path);
 string keymap_change(vector<string> cfg, int mode);
 double gaussianRandom(void);
@@ -29,6 +31,7 @@ int first_excute();
 string bit2string(int num);
 string num2bi(vector<int> pattern, int mode);
 wstring UserName();
+vector<str_t> sort_difficulty(str_t file);
 
 
 enum {
@@ -101,7 +104,6 @@ int main()
 			wcout << all_file[0] << endl;
 			song_folder = all_file[0] + L"/";
 		}
-
 		else if (all_file.size() == 0)
 		{
 			cout << "File not found..." << endl;
@@ -110,6 +112,7 @@ int main()
 		else if (all_file.size() > 1)
 		{
 			cout << "Multiple files exist. Which map do you want to select?" << endl;
+
 			for (int i = 0; i < all_file.size(); i++)
 			{
 				cout << i + 1 << " ";
@@ -128,11 +131,11 @@ int main()
 			song_folder = all_file[index - 1] + L"/";
 		}
 
-		cout << "Difficulty level (see the level of difficulty shown in the game) : ";
+		cout << "Difficulty level (see the level of difficulty shown in the game) : " << endl
+			 << "=== The ORDER of DIFFCULTY is NOT same as what you see in the game ===" <<endl;
 		cin.ignore();
-		getline(cin, tmp_for_path, '\n');
-		hardness.assign(tmp_for_path.begin(), tmp_for_path.end());
-		all_file = get_files_in_folder(path + song_folder, L"*" + hardness + L"*" + L".osu");
+
+		all_file = sort_difficulty(path + song_folder);
 
 		if (all_file.size() == 1)
 		{
@@ -147,7 +150,7 @@ int main()
 		}
 		else if (all_file.size() > 1)
 		{
-			cout << "Multiple files exist. Which map do you want to select?" << endl;
+			//cout << "Multiple files exist. Which map do you want to select?" << endl;
 			for (int i = 0; i < all_file.size(); i++)
 			{
 				cout << i + 1 << " ";
@@ -396,6 +399,16 @@ int main()
 	}
 
 	return 0;
+}
+
+string wstr2str(str_t input)
+{
+	return string().assign(input.begin(), input.end());
+}
+
+str_t str2wstr(string input)
+{
+	return str_t().assign(input.begin(), input.end());
 }
 
 vector<string> file2string(string path)
@@ -832,4 +845,30 @@ wstring UserName()
 	::GetUserName(name, &dwSize);
 
 	return name;
+}
+
+vector<str_t> sort_difficulty(str_t file)
+{
+	vector<str_t> osu_file_list;
+	vector<int> note_num;
+	map<int, str_t, less<int>> result;
+	map<int, str_t>::iterator iter;
+
+	osu_file_list = get_files_in_folder(file, L"*.osu");
+
+	for (int i = 0; i < osu_file_list.size(); i++)
+	{
+		vector<string> tmp_s = file2string(wstr2str(file + osu_file_list[i]));
+
+		for (int j = 0; j < tmp_s.size(); j++)
+			if (!tmp_s[j].compare("[HitObjects]"))
+				result[tmp_s.size() - j] = osu_file_list[i];
+	}
+
+	osu_file_list.clear();
+
+	for (iter = result.begin(); iter != result.end(); ++iter)
+		osu_file_list.push_back(iter->second);
+	
+	return osu_file_list;
 }
